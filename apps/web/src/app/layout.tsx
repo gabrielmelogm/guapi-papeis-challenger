@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Poppins, Roboto } from 'next/font/google'
 import './globals.css'
+import { ThemeProvider } from '../providers/theme-provider'
 
 export const metadata: Metadata = {
 	title: 'Create Next App',
@@ -27,7 +28,14 @@ export default function RootLayout({
 	return (
 		<html className="dark" lang="pt-BR">
 			<body className={`${roboto_init.variable} ${poppins_init.variable}`}>
-				{children}
+				<ThemeProvider
+					attribute="class"
+					defaultTheme="dark"
+					enableSystem
+					disableTransitionOnChange
+				>
+					{children}
+				</ThemeProvider>
 			</body>
 		</html>
 	)

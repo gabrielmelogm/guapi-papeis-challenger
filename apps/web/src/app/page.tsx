@@ -1,3 +1,9 @@
+import { Header } from '../components/Header'
+
 export default function Home() {
-	return <h1>Hello World</h1>
+	return (
+		<main className="w-screen h-screen font-primary bg-background-light dark:bg-background-dark text-black dark:text-white">
+			<Header />
+		</main>
+	)
 }
