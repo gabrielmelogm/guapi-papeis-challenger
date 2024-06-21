@@ -13,8 +13,3 @@
 .font-secondary {
   font-family: var(--font-secondary)
 }
-
-.dx-datagrid-headers .data-header {
-  background-color: var(--primary);
-  color: #FFFFFF
-}

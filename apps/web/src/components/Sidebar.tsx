@@ -9,7 +9,7 @@ import { ToolIcon } from '../assets/icons/tool'
 
 export function Sidebar() {
 	return (
-		<div className="w-[65px] absolute left-0 h-screen bg-badge-light dark:bg-badge-dark flex flex-col items-center">
+		<div className="w-[65px] absolute left-0 h-screen bg-badge-light dark:bg-badge-dark flex flex-col items-center max-md:hidden">
 			<Image className="pt-2" src={Brigadeiro} alt="Brigadeiro icon" />
 			<nav className="w-full flex justify-center pt-4">
 				<ul className="flex flex-col gap-4">

@@ -1,0 +1,21 @@
+.dx-datagrid-headers .data-header {
+  background-color: var(--primary);
+  color: #FFFFFF
+}
+
+.dark tbody {
+  background-color: #323236 !important;
+  color: #FFFFFF;
+}
+
+.dark .dx-datagrid-borders>.dx-datagrid-rowsview.dx-last-row-border tbody:last-child>.dx-data-row:nth-last-child(2), .dark .dx-datagrid-borders>.dx-datagrid-rowsview.dx-last-row-border tbody:last-child>.dx-data-row:nth-last-child(2)>td {
+  background-color: #39393E !important;
+}
+
+.dark .dx-texteditor-input {
+  background-color: #323236 !important;
+}
+
+.dx-group-panel-message {
+  opacity: 0;
+}

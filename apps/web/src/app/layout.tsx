@@ -43,7 +43,7 @@ export default function RootLayout({
 					enableSystem
 					disableTransitionOnChange
 				>
-					<main className="w-screen h-screen font-primary bg-background-light dark:bg-background-dark text-black dark:text-white relative pl-[65px]">
+					<main className="w-screen h-screen font-primary bg-background-light dark:bg-background-dark text-black dark:text-white relative pl-[65px] max-md:pl-0">
 						<Sidebar />
 						<Header />
 						{children}

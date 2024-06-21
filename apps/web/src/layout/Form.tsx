@@ -51,7 +51,7 @@ export function Form() {
 		resolver: zodResolver(inputsSchema),
 	})
 
-	async function onSubmit(data) {
+	async function onSubmit(data: InputProps) {
 		console.log(data)
 	}
 

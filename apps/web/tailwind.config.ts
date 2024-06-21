@@ -42,6 +42,12 @@ const config: Config = {
 				'1x4': '1fr, 4fr',
 				'2x1': '2fr, 1fr',
 			},
+			screens: {
+				sm: '375px',
+				md: '768px',
+				lg: '1024px',
+				xl: '1280px',
+			},
 		},
 	},
 	plugins: [],

@@ -1,5 +1,8 @@
 'use client'
 
+import './table.css'
+
+import { AddIcon } from '@/src/assets/icons/add'
 import Add from '@/src/assets/icons/svg/add.svg'
 import Del from '@/src/assets/icons/svg/del.svg'
 import Edit from '@/src/assets/icons/svg/edit.svg'
@@ -74,12 +77,12 @@ export function Table() {
 							<Image src={Edit} alt="Edit logo" />
 						</button>
 					</ActionButton>
-					<ActionButton>
+					<ActionButton variant="outline">
 						<Link href="/product/create">
-							<Image src={Add} alt="Add logo" />
+							<AddIcon />
 						</Link>
 					</ActionButton>
-					<ActionButton destroy>
+					<ActionButton variant="destroy">
 						<button
 							className="disabled:opacity-40 disabled:cursor-not-allowed"
 							type="button"
@@ -162,10 +165,13 @@ export function Table() {
 	)
 }
 
-function ActionButton(props: { children: ReactNode; destroy?: boolean }) {
+function ActionButton(props: {
+	children: ReactNode
+	variant?: 'destroy' | 'outline'
+}) {
 	return (
 		<li
-			className={`${props.destroy ? 'bg-button-destructive' : 'bg-button-primary'} w-[34px] h-[34px] rounded-base flex items-center justify-center`}
+			className={`${props.variant === 'destroy' ? 'bg-button-destructive' : props.variant === 'outline' ? 'border border-primary dark:border-none dark:bg-primary' : 'bg-primary'} w-[34px] h-[34px] rounded-base flex items-center justify-center`}
 		>
 			{props.children}
 		</li>
