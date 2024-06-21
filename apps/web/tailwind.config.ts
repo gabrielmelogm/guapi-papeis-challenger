@@ -7,6 +7,7 @@ const config: Config = {
 		extend: {
 			colors: {
 				primary: '#7154E0',
+				border: '#CACACA',
 				background: {
 					light: '#f2f5f3',
 					dark: '#1d1d1d',
@@ -36,6 +37,10 @@ const config: Config = {
 			borderRadius: {
 				base: '5px',
 				xl: '10px',
+			},
+			gridTemplateColumns: {
+				'1x4': '1fr, 4fr',
+				'2x1': '2fr, 1fr',
 			},
 		},
 	},

@@ -14,6 +14,7 @@ import DataGrid, {
 	Selection,
 } from 'devextreme-react/data-grid'
 import Image from 'next/image'
+import Link from 'next/link'
 import React, { ReactNode, useCallback, useState } from 'react'
 import { Thumb } from './Thumb'
 
@@ -74,9 +75,9 @@ export function Table() {
 						</button>
 					</ActionButton>
 					<ActionButton>
-						<button type="button">
+						<Link href="/product/create">
 							<Image src={Add} alt="Add logo" />
-						</button>
+						</Link>
 					</ActionButton>
 					<ActionButton destroy>
 						<button

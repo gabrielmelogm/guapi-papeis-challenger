@@ -1,5 +1,3 @@
-import Image from 'next/image'
-import { ReactNode } from 'react'
 import { Container } from '../components/Container'
 import { Table } from './table/Table'
 

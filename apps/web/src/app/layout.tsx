@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { Poppins, Roboto } from 'next/font/google'
 import './globals.css'
+import { Header } from '../components/Header'
+import { Sidebar } from '../components/Sidebar'
 import { ThemeProvider } from '../providers/theme-provider'
 
 export const metadata: Metadata = {
@@ -41,7 +43,11 @@ export default function RootLayout({
 					enableSystem
 					disableTransitionOnChange
 				>
-					{children}
+					<main className="w-screen h-screen font-primary bg-background-light dark:bg-background-dark text-black dark:text-white relative pl-[65px]">
+						<Sidebar />
+						<Header />
+						{children}
+					</main>
 				</ThemeProvider>
 			</body>
 		</html>
