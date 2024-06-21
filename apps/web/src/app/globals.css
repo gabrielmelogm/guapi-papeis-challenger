@@ -2,10 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --primary: #7154E0;
+}
+
 .font-primary {
   font-family: var(--font-primary)
 }
 
 .font-secondary {
   font-family: var(--font-secondary)
+}
+
+.dx-datagrid-headers .data-header {
+  background-color: var(--primary);
+  color: #FFFFFF
 }

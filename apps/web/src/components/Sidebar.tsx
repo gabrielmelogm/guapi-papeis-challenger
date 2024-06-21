@@ -38,7 +38,7 @@ function NavItem(props: { children: ReactNode; current?: boolean }) {
 	return (
 		<li
 			className={
-				'p-2 hover:bg-zinc-800 relative rounded-base hover:cursor-pointer'
+				'p-2 hover:bg-zinc-200 hover:dark:bg-zinc-800 relative rounded-base hover:cursor-pointer'
 			}
 		>
 			{props.current && (

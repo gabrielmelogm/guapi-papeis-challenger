@@ -27,6 +27,13 @@ export default function RootLayout({
 }>) {
 	return (
 		<html className="dark" lang="pt-BR">
+			<head>
+				<link
+					rel="stylesheet"
+					type="text/css"
+					href="https://cdn3.devexpress.com/jslib/24.1.3/css/dx.material.blue.light.css"
+				/>
+			</head>
 			<body className={`${roboto_init.variable} ${poppins_init.variable}`}>
 				<ThemeProvider
 					attribute="class"
