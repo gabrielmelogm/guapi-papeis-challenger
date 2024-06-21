@@ -1,5 +1,6 @@
 import Notebook from '@/src/assets/icons/svg/notebook.svg'
 import Image from 'next/image'
+import { Suspense } from 'react'
 import { SwitchTheme } from '../layout/SwitchTheme'
 import { Container } from './Container'
 
@@ -11,7 +12,9 @@ export function Header() {
 					<Image src={Notebook} alt="Notebook icon" />
 					<span className="text-white">Produtos</span>
 				</div>
-				<SwitchTheme />
+				<Suspense fallback={<p>Carregando...</p>}>
+					<SwitchTheme />
+				</Suspense>
 			</Container>
 		</header>
 	)

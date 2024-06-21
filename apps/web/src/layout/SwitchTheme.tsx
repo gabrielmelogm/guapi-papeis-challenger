@@ -7,32 +7,20 @@ import { useTheme } from 'next-themes'
 import Image from 'next/image'
 
 export function SwitchTheme() {
-	const { setTheme, theme } = useTheme()
+	const { theme, setTheme } = useTheme()
 
 	function onChangeTheme(value: boolean) {
-		const currentTheme = onChange(value)
-
-		if (currentTheme === 'light') {
-			setTheme('dark')
-		}
-
-		if (currentTheme === 'dark') {
+		if (!value) {
 			setTheme('light')
 		}
 
-		if (!currentTheme) {
-			setTheme('system')
+		if (value) {
+			setTheme('dark')
 		}
 	}
 
-	function onChange(value: boolean) {
-		if (value) {
-			return 'dark'
-		}
-
-		if (!value) {
-			return 'light'
-		}
+	if (!theme) {
+		return <></>
 	}
 
 	return (
@@ -40,6 +28,7 @@ export function SwitchTheme() {
 			className="w-[60px] h-[32px] rounded-[20px] relative shadow-sm focus:shadow-md px-1 flex justify-start items-center bg-white data-[state=checked]:bg-[#4C4C4D] data-[state=checked]:justify-end"
 			id="airplane-mode"
 			onCheckedChange={(value) => onChangeTheme(value)}
+			defaultChecked={theme === 'dark'}
 		>
 			<Image
 				hidden={theme === 'light'}
