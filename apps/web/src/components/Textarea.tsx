@@ -21,7 +21,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, InputProps>(
 					{...props}
 					ref={ref}
 					id={props.label}
-					className="flex items-end pl-2 p-1 text-zinc-800 border border-zinc-200 rounded-base"
+					className="flex items-end pl-2 p-1 text-zinc-800 dark:text-zinc-200 border border-zinc-200 rounded-base dark:border-none focus:outline-none bg-input-light dark:bg-input-dark"
 					maxLength={100}
 					rows={4}
 					onChange={({ target }) => setText(target.value)}
