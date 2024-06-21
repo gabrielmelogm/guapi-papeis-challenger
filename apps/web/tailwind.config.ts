@@ -28,9 +28,14 @@ const config: Config = {
 					secondary: '#656565',
 					destructive: '#DC3545',
 				},
+				icon: {
+					light: '#444648',
+					dark: '#FFFFFF',
+				},
 			},
 			borderRadius: {
 				base: '5px',
+				xl: '10px',
 			},
 		},
 	},

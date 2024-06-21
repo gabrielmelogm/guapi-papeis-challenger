@@ -1,7 +1,7 @@
 'use client'
 
-import Dark from '@/src/assets/icons/dark.svg'
-import Light from '@/src/assets/icons/light.svg'
+import Dark from '@/src/assets/icons/svg/dark.svg'
+import Light from '@/src/assets/icons/svg/light.svg'
 import * as Switch from '@radix-ui/react-switch'
 import { useTheme } from 'next-themes'
 import Image from 'next/image'
@@ -34,7 +34,6 @@ export function SwitchTheme() {
 			return 'light'
 		}
 	}
-	console.log(theme)
 
 	return (
 		<Switch.Root

@@ -1,32 +1,32 @@
-import File from '@/src/assets/icons/file.svg'
-import Home from '@/src/assets/icons/home.svg'
-import Menu from '@/src/assets/icons/menu.svg'
-import Storage from '@/src/assets/icons/storage.svg'
-import Tool from '@/src/assets/icons/tool.svg'
 import Brigadeiro from '@/src/assets/images/brigadeiro.png'
 import Image from 'next/image'
 import { ReactNode } from 'react'
+import { FileIcon } from '../assets/icons/file'
+import { HomeIcon } from '../assets/icons/home'
+import { MenuIcon } from '../assets/icons/menu'
+import { StorageIcon } from '../assets/icons/storage'
+import { ToolIcon } from '../assets/icons/tool'
 
 export function Sidebar() {
 	return (
-		<div className="w-[65px] absolute left-0 h-screen bg-background-light dark:bg-badge-dark flex flex-col items-center">
+		<div className="w-[65px] absolute left-0 h-screen bg-badge-light dark:bg-badge-dark flex flex-col items-center">
 			<Image className="pt-2" src={Brigadeiro} alt="Brigadeiro icon" />
 			<nav className="w-full flex justify-center pt-4">
 				<ul className="flex flex-col gap-4">
 					<NavItem>
-						<Image className="object-cover" src={Home} alt="Home icon" />
+						<HomeIcon />
 					</NavItem>
 					<NavItem current>
-						<Image src={File} alt="File icon" />
+						<FileIcon />
 					</NavItem>
 					<NavItem>
-						<Image src={Storage} alt="Storage icon" />
+						<StorageIcon />
 					</NavItem>
 					<NavItem>
-						<Image src={Tool} alt="Tool icon" />
+						<ToolIcon />
 					</NavItem>
 					<NavItem>
-						<Image src={Menu} alt="Menu icon" />
+						<MenuIcon />
 					</NavItem>
 				</ul>
 			</nav>
