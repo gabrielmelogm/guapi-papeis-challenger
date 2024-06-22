@@ -6,6 +6,7 @@ import { AddIcon } from '@/src/assets/icons/add'
 import Add from '@/src/assets/icons/svg/add.svg'
 import Del from '@/src/assets/icons/svg/del.svg'
 import Edit from '@/src/assets/icons/svg/edit.svg'
+import { api } from '@/src/lib/api'
 import DataGrid, {
 	Column,
 	DataGridTypes,
@@ -18,37 +19,39 @@ import DataGrid, {
 } from 'devextreme-react/data-grid'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { ReactNode, useCallback, useState } from 'react'
+import React, { ReactNode, useCallback, useEffect, useState } from 'react'
 import { Thumb } from './Thumb'
 
 const pageSizes = [10, 25, 50, 100]
 
-const dataSourceOptions = [
-	{
-		id: 1,
-		image: 'https://picsum.photos/id/1/200/300',
-		name: 'Bolo de Chocolate',
-		description:
-			'Nosso Bolo de Chocolate Clássico é um deleite irresistível. Com massa fofinha e úmida feita com cacau de alta qualidade, ele possui camadas generosas de ganache de chocolate belga. A cobertura é uma ganache suave e brilhante, adornada com raspas de chocolate artesanal. Perfeito para qualquer ocasião, este bolo oferece uma experiência sublime de sabor e textura.',
-		value: 24.99,
-		quantity: 20,
-		createdAt: new Date(),
-	},
-	{
-		id: 2,
-		image: 'https://picsum.photos/id/1/200/300',
-		name: 'Cheesecake',
-		description:
-			'Nosso Cheesecake Clássico é a perfeita combinação de suavidade e sabor. Feito com cream cheese de alta qualidade, ele tem uma textura cremosa e aveludada. A base crocante de biscoito de graham complementa perfeitamente o recheio rico. Finalizado com uma fina camada de geleia de frutas vermelhas e decorado com frutas frescas, é ideal para qualquer ocasião especial ou para um mimo diário.',
-		value: 26.99,
-		quantity: 20,
-		createdAt: new Date(),
-	},
-]
+interface ProductProps {
+	id: number
+	name: string
+	description: string
+	value: number
+	imageUrl: string
+	quantity: number
+	createdAt: string
+}
 
 export function Table() {
 	const [collapsed, setCollapsed] = useState(true)
 	const [selectedRowsKey, setSelectedRowsKey] = useState<number[]>([])
+	const [dataSourceOptions, setDataSourceOptions] = useState<ProductProps[]>([])
+
+	async function getData() {
+		const response = await api.get('/')
+		const listData = []
+		for (const product of response.data) {
+			if (!product.imageUrl.includes('https')) {
+				product.imageUrl = `${process.env.NEXT_PUBLIC_API_URL}/${product.imageUrl}`
+				listData.push(product)
+			} else {
+				listData.push(product)
+			}
+		}
+		setDataSourceOptions(listData)
+	}
 
 	const selectEmployee = useCallback((e: any) => {
 		setSelectedRowsKey(e.selectedRowKeys)
@@ -67,6 +70,11 @@ export function Table() {
 		},
 		[collapsed],
 	)
+
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+	useEffect(() => {
+		getData()
+	}, [])
 
 	return (
 		<>
@@ -114,7 +122,7 @@ export function Table() {
 				<Grouping autoExpandAll={false} />
 
 				<Column
-					dataField="image"
+					dataField="imageUrl"
 					caption="IMAGEM"
 					dataType="string"
 					alignment="center"

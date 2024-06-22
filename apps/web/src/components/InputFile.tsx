@@ -11,12 +11,33 @@ interface InputFileProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export function InputFile(props: InputFileProps) {
+	const [messagePreview, setMessagePreview] = useState(null)
+
+	const handleFileChange = (e: any) => {
+		const imageFile = e.target.files[0]
+
+		if (imageFile) {
+			const reader = new FileReader() as any
+			reader.onloadend = () => {
+				setMessagePreview(reader.result)
+			}
+			reader.readAsDataURL(imageFile)
+		} else {
+			setMessagePreview(null)
+		}
+	}
+
 	return (
 		<div className="w-full flex flex-col gap-1">
 			<span className="text-border">{props.label}</span>
+			<img
+				src={messagePreview ?? ''}
+				alt="Preview"
+				className="w-full h-[270px] object-cover"
+			/>
 			<label
 				htmlFor={props.label}
-				className="text-border w-full h-[250px] relative flex flex-col items-center px-4 py-6 bg-[#D9D9D9] text-blue rounded-lg shadow-lg tracking-wide border border-blue cursor-pointer hover:bg-blue hover:text-white"
+				className="relative rounded-lg tracking-wide cursor-pointer"
 			>
 				<span className="absolute w-full bg-primary p-2 flex items-center gap-2 justify-center text-white rounded-base bottom-0 text-sm">
 					{!props.file ? (
@@ -43,7 +64,10 @@ export function InputFile(props: InputFileProps) {
 				id={props.label}
 				className="hidden"
 				type="file"
-				onChange={(e: any) => props.setFile(e.target.files[0])}
+				onChange={(e: any) => {
+					props.setFile(e.target.files[0])
+					handleFileChange(e)
+				}}
 			/>
 		</div>
 	)
