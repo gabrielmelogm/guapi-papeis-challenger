@@ -37,6 +37,7 @@ const config: Config = {
 			borderRadius: {
 				base: '5px',
 				xl: '10px',
+				midCircle: '50px 50px 0 0',
 			},
 			gridTemplateColumns: {
 				'1x4': '1fr, 4fr',

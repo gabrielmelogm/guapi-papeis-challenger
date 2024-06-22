@@ -121,70 +121,74 @@ export function Table() {
 			<h2 className="pt-6 font-bold text-base">
 				Arraste o cabeçalho de uma coluna aqui para agrupar por essa coluna
 			</h2>
-			<DataGrid
-				dataSource={dataSourceOptions}
-				allowColumnReordering={true}
-				rowAlternationEnabled={true}
-				showBorders={true}
-				width="100%"
-				onContentReady={onContentReady}
-				keyExpr={'id'}
-				onSelectionChanged={selectEmployee}
-				selectedRowKeys={selectedRowsKey}
-			>
-				<Selection mode="multiple" />
-				<GroupPanel visible={true} />
-				<SearchPanel visible={true} highlightCaseSensitive={true} />
-				<Grouping autoExpandAll={false} />
+			<div className="w-full overflow-x-scroll">
+				<div className="min-w-[700px]">
+					<DataGrid
+						dataSource={dataSourceOptions}
+						allowColumnReordering={true}
+						rowAlternationEnabled={true}
+						showBorders={true}
+						width="100%"
+						onContentReady={onContentReady}
+						keyExpr={'id'}
+						onSelectionChanged={selectEmployee}
+						selectedRowKeys={selectedRowsKey}
+					>
+						<Selection mode="multiple" />
+						<GroupPanel visible={true} />
+						<SearchPanel visible={true} highlightCaseSensitive={true} />
+						<Grouping autoExpandAll={false} />
 
-				<Column
-					dataField="imageUrl"
-					caption="IMAGEM"
-					dataType="string"
-					alignment="center"
-					cellRender={Thumb}
-					cssClass="data-header"
-				/>
-				<Column
-					dataField="name"
-					caption="NOME DO PRODUTO"
-					dataType="string"
-					alignment="center"
-					cssClass="data-header"
-				/>
-				<Column
-					dataField="description"
-					caption="DESCRIÇÃO"
-					dataType="string"
-					alignment="center"
-					cssClass="data-header"
-				/>
-				<Column
-					dataField="value"
-					caption="VALOR"
-					dataType="number"
-					format="currency"
-					alignment="center"
-					cssClass="data-header"
-				/>
-				<Column
-					dataField="quantity"
-					caption="QUANTIDADE"
-					dataType="number"
-					alignment="center"
-					cssClass="data-header"
-				/>
-				<Column
-					dataField="createdAt"
-					caption="DATA DE CADASTRO"
-					dataType="date"
-					alignment="center"
-					cssClass="data-header"
-				/>
+						<Column
+							dataField="imageUrl"
+							caption="IMAGEM"
+							dataType="string"
+							alignment="center"
+							cellRender={Thumb}
+							cssClass="data-header"
+						/>
+						<Column
+							dataField="name"
+							caption="NOME DO PRODUTO"
+							dataType="string"
+							alignment="center"
+							cssClass="data-header"
+						/>
+						<Column
+							dataField="description"
+							caption="DESCRIÇÃO"
+							dataType="string"
+							alignment="center"
+							cssClass="data-header"
+						/>
+						<Column
+							dataField="value"
+							caption="VALOR"
+							dataType="number"
+							format="currency"
+							alignment="center"
+							cssClass="data-header"
+						/>
+						<Column
+							dataField="quantity"
+							caption="QUANTIDADE"
+							dataType="number"
+							alignment="center"
+							cssClass="data-header"
+						/>
+						<Column
+							dataField="createdAt"
+							caption="DATA DE CADASTRO"
+							dataType="date"
+							alignment="center"
+							cssClass="data-header"
+						/>
 
-				<Pager allowedPageSizes={pageSizes} showPageSizeSelector={true} />
-				<Paging defaultPageSize={10} />
-			</DataGrid>
+						<Pager allowedPageSizes={pageSizes} showPageSizeSelector={true} />
+						<Paging defaultPageSize={10} />
+					</DataGrid>
+				</div>
+			</div>
 		</>
 	)
 }
