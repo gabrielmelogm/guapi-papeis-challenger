@@ -1,3 +1,6 @@
+import express from 'express'
+
+import path from 'node:path'
 import { PrismaClient } from '@prisma/client'
 import { Router } from 'express'
 import multer from 'multer'
@@ -10,6 +13,10 @@ const prisma = new PrismaClient()
 
 const repository = new ProductsRepository(prisma)
 
+const uploadsDir = path.join(__dirname, '../uploads')
+
+route.use('/uploads', express.static(uploadsDir))
+
 route.get('/', async (_, res) =>
 	res.status(200).send(await repository.getProducts()),
 )
@@ -17,7 +24,7 @@ route.get('/', async (_, res) =>
 const upload = multer({ storage: storage })
 
 route.post('/', upload.single('file'), async (req, res) => {
-	const { path: filePath } = req.file
+	const { path: filePath } = req.file as any
 
 	return res.status(201).send(
 		await repository.createProduct({

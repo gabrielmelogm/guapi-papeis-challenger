@@ -4,13 +4,14 @@ GET {{base_url}}
 
 ###
 POST {{base_url}}
-Content-Type: application/json
+Content-Type: multipart/form-data
 
 {
   "name": "Product",
   "description": "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
   "value": 15,
-  "quantity": 5
+  "quantity": 5,
+  "file": "TYPE FILE"
 }
 
 ###
@@ -18,5 +19,5 @@ DELETE {{base_url}}
 Content-Type: application/json
 
 {
-  "productsId": ["clxpejmek0000cggzt7xmtmkh", "clxpejmek0001cggz28j3no7q"]
+  "productsId": ["clxpfhbkq0000dpy8gmt3dc26", "clxpfetzp00001umtf989aojs"]
 }
