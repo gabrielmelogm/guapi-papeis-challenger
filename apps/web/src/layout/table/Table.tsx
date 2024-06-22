@@ -71,6 +71,21 @@ export function Table() {
 		[collapsed],
 	)
 
+	async function onDelete() {
+		const ids = selectedData.map((data) => data.id)
+		await api
+			.delete('/', {
+				data: {
+					productsId: ids,
+				},
+			})
+			.then(async () => await getData())
+			.catch((error) => {
+				console.error(error)
+				alert('Erro ao excluir dados, tente novamente')
+			})
+	}
+
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
 		getData()
@@ -95,6 +110,7 @@ export function Table() {
 							className="disabled:opacity-40 disabled:cursor-not-allowed"
 							type="button"
 							disabled={selectedData.length === 0}
+							onClick={onDelete}
 						>
 							<Image src={Del} alt="Delete logo" />
 						</button>
