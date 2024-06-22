@@ -2,11 +2,15 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+import { Spin } from '../assets/icons/spin'
 import { Input } from '../components/Input'
 import { InputFile } from '../components/InputFile'
 import { Textarea } from '../components/Textarea'
+import { api } from '../lib/api'
 
 const inputsSchema = z.object({
 	name: z
@@ -42,6 +46,10 @@ const inputsSchema = z.object({
 type InputProps = z.infer<typeof inputsSchema>
 
 export function Form() {
+	const router = useRouter()
+
+	const [loading, setLoading] = useState(false)
+
 	const {
 		register,
 		handleSubmit,
@@ -51,14 +59,40 @@ export function Form() {
 		resolver: zodResolver(inputsSchema),
 	})
 
+	const [file, setFile] = useState<File | null>(null)
+
 	async function onSubmit(data: InputProps) {
-		console.log(data)
+		const formData = new FormData()
+
+		const inputFile = file as any
+
+		formData.append('name', data.name)
+		formData.append('description', data.description)
+		formData.append('value', String(data.value))
+		formData.append('quantity', String(data.quantity))
+		formData.append('file', inputFile)
+
+		setLoading(true)
+		await api
+			.post('/', formData)
+			.then(() => router.push('/'))
+			.catch((error) => {
+				console.error(error)
+				alert('Erro ao criar novo produto, tente novamente')
+				reset()
+			})
+			.finally(() => setLoading(false))
 	}
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="mt-6">
 			<div className="grid grid-cols-1x4 gap-4">
-				<InputFile label="Foto do Produto" name="image" />
+				<InputFile
+					label="Foto do Produto"
+					name="image"
+					file={file}
+					setFile={setFile}
+				/>
 
 				<div className="flex flex-col gap-1">
 					<Input
@@ -103,9 +137,17 @@ export function Form() {
 				</Link>
 				<button
 					type="submit"
-					className="bg-button-primary w-[100px] h-[32px] rounded-base flex items-center justify-center text-white"
+					className="bg-button-primary min-w-[100px] h-[32px] px-2 rounded-base flex items-center justify-center text-white disabled:opacity-80 disabled:cursor-not-allowed"
+					disabled={loading}
 				>
-					Salvar
+					{loading ? (
+						<div className="flex items-center gap-2">
+							<Spin />
+							<span>Processando...</span>
+						</div>
+					) : (
+						<span>Salvar</span>
+					)}
 				</button>
 			</div>
 		</form>
