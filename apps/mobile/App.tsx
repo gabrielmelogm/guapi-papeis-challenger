@@ -1,9 +1,8 @@
 import { Header } from '@/components/Header'
 import { MENU_HEIGHT, Menu } from '@/components/Menu/Menu'
-import { ActionsProducts } from '@/screens/ActionsProducts'
-import { Products } from '@/screens/Products'
+import { ChangeTheme } from '@/screens/ChangeTheme'
 import { StatusBar } from 'expo-status-bar'
-import { SafeAreaView, Text, View } from 'react-native'
+import { SafeAreaView, View } from 'react-native'
 
 export default function App() {
 	return (
@@ -15,7 +14,8 @@ export default function App() {
 					className={`h-screen pb-[${MENU_HEIGHT}px] pt-8 flex items-center`}
 				>
 					{/* <Products /> */}
-					<ActionsProducts />
+					{/* <ActionsProducts /> */}
+					<ChangeTheme />
 				</View>
 				<Menu />
 			</View>

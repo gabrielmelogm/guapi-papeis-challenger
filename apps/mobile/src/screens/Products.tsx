@@ -1,9 +1,10 @@
 import { TableRow } from '@/components/Table/TableRow'
+import { container } from '@/styles/container'
 import { ScrollView, View } from 'react-native'
 
 export function Products() {
 	return (
-		<View className={'w-[90%] h-[73%]'}>
+		<View className={container}>
 			<ScrollView>
 				<TableRow />
 				<TableRow />

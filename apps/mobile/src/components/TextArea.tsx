@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Text, TextInput, View } from 'react-native'
+import { Platform, Text, TextInput, View } from 'react-native'
 
 interface TextAreaProps {
 	placeholder: string
@@ -17,7 +17,7 @@ export function TextArea(props: TextAreaProps) {
 				multiline
 				numberOfLines={4}
 				maxLength={MAX_LENGTH}
-				className="border border-border rounded-[5px] pl-2 text-border"
+				className={`border border-border rounded-[5px] pl-2 text-border ${Platform.OS === 'ios' && 'h-[85px]'}`}
 				onChangeText={(newText) => setText(newText)}
 			/>
 
