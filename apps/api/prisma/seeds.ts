@@ -12,7 +12,7 @@ async function main() {
 
 	const products: ProductProps[] = []
 
-	for (let i = 1; i <= 1000; i++) {
+	for (let i = 1; i <= 30; i++) {
 		const createdProduct = {
 			name: faker.commerce.productName(),
 			description: faker.commerce.productDescription(),
