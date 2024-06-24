@@ -11,11 +11,11 @@ interface NavProps {
 export function Nav(props: NavProps) {
 	return (
 		<TouchableOpacity
-			className={`flex items-center relative`}
+			className={'flex items-center relative'}
 			onPress={props.onClick}
 		>
 			<View
-				className={`w-[55px] h-[55px] flex items-center justify-center rounded-full ${props.current && 'bg-primary absolute top-[-30px]'} text-white`}
+				className={`w-[55px] h-[55px] flex items-center justify-center rounded-full ${props.current && 'bg-primary absolute top-[-30px]'}`}
 			>
 				{props.icon}
 			</View>

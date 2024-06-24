@@ -38,7 +38,7 @@ export function Menu() {
 
 	return (
 		<View
-			className={`w-full h-[${MENU_HEIGHT}px] flex items-center justify-center dark:bg-badge-dark`}
+			className={`w-full h-[${MENU_HEIGHT}px] absolute bottom-0 flex items-center justify-center dark:bg-badge-dark`}
 		>
 			<View className="w-[90%] py-2 flex flex-row items-center gap-2 justify-between">
 				{tabs.map((tab) => (
