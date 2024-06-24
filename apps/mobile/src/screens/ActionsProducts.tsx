@@ -15,10 +15,10 @@ export function ActionsProducts() {
 				</View>
 
 				<View className="pb-4">
-					<Input placeholder="Nome do Produto" />
-					<TextArea placeholder="Observações" />
-					<Input placeholder="Valor" type="decimal-pad" />
-					<Input placeholder="Quantidade" type="numeric" />
+					<Input label="Nome do Produto" />
+					<TextArea label="Observações" />
+					<Input label="Valor" type="decimal-pad" />
+					<Input label="Quantidade" type="numeric" />
 					<InputFile />
 				</View>
 

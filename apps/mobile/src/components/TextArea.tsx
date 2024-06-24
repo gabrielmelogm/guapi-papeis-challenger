@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Platform, Text, TextInput, View } from 'react-native'
 
 interface TextAreaProps {
-	placeholder: string
+	label: string
 }
 
 const MAX_LENGTH = 100
@@ -12,7 +12,7 @@ export function TextArea(props: TextAreaProps) {
 
 	return (
 		<View className="relative mt-2">
-			<Text className="text-border pb-1">{props.placeholder}</Text>
+			<Text className="text-border pb-1">{props.label}</Text>
 			<TextInput
 				multiline
 				numberOfLines={4}

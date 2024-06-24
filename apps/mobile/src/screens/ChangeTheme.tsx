@@ -1,11 +1,9 @@
 import { container } from '@/styles/container'
-import { useState } from 'react'
+import { useColorScheme } from 'nativewind'
 import { Platform, Switch, Text, View } from 'react-native'
 
 export function ChangeTheme() {
-	const [isEnabled, setIsEnabled] = useState(false)
-
-	const toggleSwitch = () => setIsEnabled((previousState) => !previousState)
+	const { colorScheme, toggleColorScheme } = useColorScheme()
 
 	return (
 		<View className={container}>
@@ -16,9 +14,9 @@ export function ChangeTheme() {
 				<Text className="text-sm font-bold">Trocar tema</Text>
 				<Switch
 					trackColor={{ false: '#f5f5f5', true: '#4C4C4D' }}
-					thumbColor={isEnabled ? '#E9EAF0' : '#4C4C4D'}
-					onValueChange={toggleSwitch}
-					value={isEnabled}
+					thumbColor={colorScheme === 'dark' ? '#E9EAF0' : '#4C4C4D'}
+					onValueChange={toggleColorScheme}
+					value={colorScheme === 'light'}
 					style={{ elevation: 5 }}
 				/>
 			</View>
