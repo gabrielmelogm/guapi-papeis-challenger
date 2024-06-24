@@ -3,6 +3,7 @@ import HomeButton from '@/assets/icons/home.svg'
 import MenuButton from '@/assets/icons/menu.svg'
 import ProductsButton from '@/assets/icons/products.svg'
 import ToolButton from '@/assets/icons/tool.svg'
+import { useScreens } from '@/hooks/useScreens'
 import { useState } from 'react'
 import { Keyboard, View } from 'react-native'
 import { Nav } from './Nav'
@@ -10,11 +11,11 @@ import { Nav } from './Nav'
 export const MENU_HEIGHT = 80
 
 export function Menu() {
-	const [currentTab, setCurrentTab] = useState('Produtos')
+	const { currentScreen, changeScreen } = useScreens()
 	const [isKeyboardActive, setIsKeyboardActive] = useState<boolean>(false)
 
 	function getButtonColor(title: string) {
-		if (title === currentTab) {
+		if (title === currentScreen.title) {
 			return '#FFFFFF'
 		}
 
@@ -61,8 +62,8 @@ export function Menu() {
 						key={tab.title}
 						icon={<View className="h-[40px]">{tab.icon}</View>}
 						title={tab.title}
-						current={currentTab === tab.title}
-						onClick={() => setCurrentTab(tab.title)}
+						current={currentScreen.title === tab.title}
+						onClick={() => changeScreen(tab.title)}
 					/>
 				))}
 			</View>
