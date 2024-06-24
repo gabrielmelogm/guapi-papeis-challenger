@@ -4,7 +4,7 @@ import { TableMenuOptions } from './TableMenuOptions'
 export function TableRow() {
 	return (
 		<View
-			className="flex flex-row items-center gap-2 py-3 px-2 bg-white rounded-xl relative shadow-md"
+			className="flex flex-row items-center gap-2 mt-2 py-3 px-2 bg-white rounded-xl relative shadow-md"
 			style={{ elevation: 5 }}
 		>
 			<Image
