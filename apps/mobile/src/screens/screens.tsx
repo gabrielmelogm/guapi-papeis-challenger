@@ -10,11 +10,11 @@ export interface ScreenProps {
 
 export const screens: ScreenProps[] = [
 	{
-		title: 'Home',
+		title: 'Produtos',
 		component: <Products />,
 	},
 	{
-		title: 'Produtos',
+		title: 'Action-Produtos',
 		component: <ActionsProducts />,
 	},
 	{
