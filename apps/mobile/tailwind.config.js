@@ -8,7 +8,7 @@ module.exports = {
 				primary: '#7652DB',
 				border: '#CACACA',
 				background: {
-					light: '#f2f5f3',
+					light: '#f5f5f5',
 					dark: '#1d1d1d',
 				},
 				badge: {
