@@ -24,7 +24,7 @@ module.exports = {
 					dark: '#1D1D1D',
 				},
 				button: {
-					primary: '#7154E0',
+					primary: '#7557E9',
 					secondary: '#656565',
 					destructive: '#DC3545',
 				},
