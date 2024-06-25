@@ -94,8 +94,8 @@ EXPO_PUBLIC_API_URL=http://{your_ip}:3333
 4. Inicie o servidor expo
 ```bash
 yarn start
+```
 
 > [!INFO]
 > Caso tenha dúvida sobre qual o seu ip, o servidor expo exibe ao iniciá-lo
-```
 <img src='docs/expo.png' />
