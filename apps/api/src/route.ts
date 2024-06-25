@@ -41,21 +41,44 @@ route.post('/', upload.single('file'), async (req, res) => {
 	)
 })
 
-route.put('/:id', upload.single('file'), async (req, res) => {
-	const { path: filePath } = req.file as any
+route.put('/:id', async (req, res) => {
+	let imageUrl = ''
 
-	return res.status(200).send(
-		await repository.update(
-			{
-				name: req.body.name,
-				description: req.body.description,
-				value: Number.parseFloat(req.body.value),
-				quantity: Number.parseFloat(req.body.quantity),
-				imageUrl: filePath,
-			},
-			req.params.id,
-		),
-	)
+	const up = upload.single('file')
+	up(req, res, async (err) => {
+		if (err instanceof multer.MulterError) {
+			imageUrl = ''
+		}
+
+		imageUrl = req.file?.path as any
+
+		if (!imageUrl) {
+			return res.status(200).send(
+				await repository.update(
+					{
+						name: req.body.name,
+						description: req.body.description,
+						value: Number.parseFloat(req.body.value),
+						quantity: Number.parseFloat(req.body.quantity),
+					},
+					req.params.id,
+				),
+			)
+		}
+
+		return res.status(200).send(
+			await repository.update(
+				{
+					name: req.body.name,
+					description: req.body.description,
+					value: Number.parseFloat(req.body.value),
+					quantity: Number.parseFloat(req.body.quantity),
+					imageUrl,
+				},
+				req.params.id,
+			),
+		)
+	})
 })
 
 route.delete('/', async (req, res) =>

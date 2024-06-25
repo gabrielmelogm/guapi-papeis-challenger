@@ -8,10 +8,13 @@ interface InputFileProps extends InputHTMLAttributes<HTMLInputElement> {
 	label: string
 	file: File | null
 	setFile: (file: any) => void
+	defaultImg?: { src: string }
 }
 
 export function InputFile(props: InputFileProps) {
-	const [messagePreview, setMessagePreview] = useState(null)
+	const [messagePreview, setMessagePreview] = useState(
+		props.defaultImg ? props.defaultImg.src : null,
+	)
 
 	const handleFileChange = (e: any) => {
 		const imageFile = e.target.files[0]
@@ -27,13 +30,26 @@ export function InputFile(props: InputFileProps) {
 		}
 	}
 
+	function getImagePreview(src: string | null) {
+		if (!src) {
+			return ''
+		}
+
+		if (messagePreview?.includes('uploads')) {
+			return `${process.env.NEXT_PUBLIC_API_URL}/${messagePreview}`
+		}
+
+		return src
+	}
+
 	return (
 		<div className="w-full flex flex-col gap-1">
 			<span className="text-border">{props.label}</span>
 			<img
-				src={messagePreview ?? ''}
+				src={getImagePreview(messagePreview) ?? ''}
 				alt="Preview"
 				className="w-full h-[270px] object-cover"
+				loading="lazy"
 			/>
 			<label
 				htmlFor={props.label}

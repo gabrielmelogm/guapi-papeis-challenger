@@ -24,7 +24,7 @@ import { Thumb } from './Thumb'
 
 const pageSizes = [10, 25, 50, 100]
 
-interface ProductProps {
+export interface ProductProps {
 	id: number
 	name: string
 	description: string
@@ -86,6 +86,11 @@ export function Table() {
 			})
 	}
 
+	function onEdit() {
+		const id = selectedData.map((data) => data.id)[0]
+		return id
+	}
+
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
 		getData()
@@ -96,8 +101,20 @@ export function Table() {
 			<div>
 				<ul className="flex items-center gap-4">
 					<ActionButton>
-						<button type="button">
-							<Image src={Edit} alt="Edit logo" />
+						<button
+							type="button"
+							className="disabled:opacity-40 disabled:cursor-not-allowed"
+							disabled={selectedData.length === 0 || selectedData.length > 1}
+						>
+							<Link
+								href={
+									selectedData.length === 0 || selectedData.length > 1
+										? '#'
+										: `/product/edit/${onEdit()}`
+								}
+							>
+								<Image src={Edit} alt="Edit logo" />
+							</Link>
 						</button>
 					</ActionButton>
 					<ActionButton variant="outline">

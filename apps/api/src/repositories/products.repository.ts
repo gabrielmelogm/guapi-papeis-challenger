@@ -4,7 +4,7 @@ import { Product } from '../models/Product'
 export class ProductsRepository {
 	constructor(private readonly prisma: PrismaClient) {}
 
-	async findOne(id: string): Promise<Product> {
+	async findOne(id: string): Promise<Product | null> {
 		const response = await this.prisma.product.findFirst({
 			where: {
 				id,
@@ -12,7 +12,7 @@ export class ProductsRepository {
 		})
 
 		if (!response) {
-			throw new Error('Product not found')
+			return null
 		}
 
 		const product = new Product(response)
