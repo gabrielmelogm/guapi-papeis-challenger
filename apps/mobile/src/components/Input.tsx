@@ -22,12 +22,12 @@ export function Input({
 	return (
 		<View className="mt-2">
 			<Text
-				className={`text-border pb-1 ${errorMessage && 'text-button-destructive'}`}
+				className={`text-[#C6C6C6] pb-1 ${errorMessage && 'text-button-destructive'}`}
 			>
 				{label}
 			</Text>
 			<TextInput
-				className={`border border-border dark:border-transparent bg-input-light dark:bg-input-dark rounded-[5px] pl-2 text-border ${Platform.OS === 'ios' && 'h-8'} ${errorMessage && 'border-button-destructive'}`}
+				className={`border border-border-light dark:border-transparent bg-input-light dark:bg-input-dark rounded-[5px] pl-2 text-border ${Platform.OS === 'ios' && 'h-8'} ${errorMessage && 'border-button-destructive'}`}
 				keyboardType={type}
 				onChangeText={onChange}
 			/>

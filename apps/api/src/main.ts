@@ -8,7 +8,7 @@ export const app = express()
 
 app.use(
 	cors({
-		origin: ['*', '0.0.0.0'],
+		origin: '*',
 	}),
 )
 

@@ -24,7 +24,7 @@ export function InputFile(props: InputFileProps) {
 
 	return (
 		<View className="pt-2">
-			<Text className="text-border pb-1">Foto do Produto</Text>
+			<Text className="text-[#C6C6C6] pb-1">Foto do Produto</Text>
 			<View className="flex flex-row items-center">
 				<View className="w-[50%] bg-button-primary rounded-[5px] p-2">
 					{!props.file ? (
