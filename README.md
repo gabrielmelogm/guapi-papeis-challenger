@@ -1,6 +1,12 @@
 # Guapi Papéis
 > Uma aplicação de cadastro de produtos multiplataforma para um teste na guapi
 
+## Requisitos
+- Node 20.x: https://nodejs.org/en/download/package-manager
+- Expo GO:
+  - Android: https://play.google.com/store/apps/details?id=host.exp.exponent&hl=pt_BR&pli=1
+  - IOs: https://apps.apple.com/br/app/expo-go/id982107779  
+
 ## Estrutura do projeto
 ```bash
 ├── apps/
@@ -88,7 +94,7 @@ yarn install
 ```bash
 cp .env.example .env.local
 
-EXPO_PUBLIC_API_URL=http://{your_ip}:3333
+// EXPO_PUBLIC_API_URL=http://{your_ip}:3333
 ```
 
 4. Inicie o servidor expo
@@ -99,3 +105,5 @@ yarn start
 > [!NOTE]
 > Caso tenha dúvida sobre qual o seu ip, o servidor expo exibe ao iniciá-lo
 <img src='docs/expo.png' />
+
+5. Conecte seu celular via QRcode pelo aplicativo Expo Go
