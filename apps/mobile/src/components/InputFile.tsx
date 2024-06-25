@@ -1,19 +1,25 @@
 import DownloadIcon from '@/assets/icons/download.svg'
-import * as DocumentPicker from 'expo-document-picker'
-import { useState } from 'react'
-import { Button, Text, TouchableOpacity, View } from 'react-native'
+import * as ImagePicker from 'expo-image-picker'
+import { Text, TouchableOpacity, View } from 'react-native'
 
-export function InputFile() {
-	const [file, setFile] = useState<DocumentPicker.DocumentPickerResult | null>(
-		null,
-	)
+interface InputFileProps {
+	file: ImagePicker.ImagePickerAsset | null
+	setFile: (file: ImagePicker.ImagePickerAsset | null) => void
+}
 
+export function InputFile(props: InputFileProps) {
 	async function handlePress() {
-		const response = await DocumentPicker.getDocumentAsync({
-			type: 'image/*',
+		const response = await ImagePicker.launchImageLibraryAsync({
+			mediaTypes: ImagePicker.MediaTypeOptions.Images,
+			allowsEditing: false,
+			quality: 1,
 		})
 
-		setFile(response)
+		if (response.canceled) {
+			return null
+		}
+
+		props.setFile(response.assets[0])
 	}
 
 	return (
@@ -21,7 +27,7 @@ export function InputFile() {
 			<Text className="text-border pb-1">Foto do Produto</Text>
 			<View className="flex flex-row items-center">
 				<View className="w-[50%] bg-button-primary rounded-[5px] p-2">
-					{!file?.assets ? (
+					{!props.file ? (
 						<TouchableOpacity
 							onPress={handlePress}
 							className="flex flex-row items-center"
@@ -33,8 +39,8 @@ export function InputFile() {
 						</TouchableOpacity>
 					) : (
 						<View className="flex flex-row items-center gap-2">
-							<Text className="text-white text-xs">{file.assets[0].name}</Text>
-							<TouchableOpacity onPress={() => setFile(null)}>
+							<Text className="text-white text-xs">{props.file.fileName}</Text>
+							<TouchableOpacity onPress={() => props.setFile(null)}>
 								<Text className="text-button-destructive font-bold p-1">X</Text>
 							</TouchableOpacity>
 						</View>

@@ -9,16 +9,31 @@ import {
 interface InputProps {
 	label: string
 	type?: KeyboardTypeOptions
+	onChange?: (e: any) => void
+	errorMessage?: string
 }
 
-export function Input({ label, type = 'default' }: InputProps) {
+export function Input({
+	label,
+	type = 'default',
+	onChange,
+	errorMessage,
+}: InputProps) {
 	return (
 		<View className="mt-2">
-			<Text className="text-border pb-1">{label}</Text>
+			<Text
+				className={`text-border pb-1 ${errorMessage && 'text-button-destructive'}`}
+			>
+				{label}
+			</Text>
 			<TextInput
-				className={`border border-border rounded-[5px] pl-2 text-border ${Platform.OS === 'ios' && 'h-8'}`}
+				className={`border border-border rounded-[5px] pl-2 text-border ${Platform.OS === 'ios' && 'h-8'} ${errorMessage && 'border-button-destructive'}`}
 				keyboardType={type}
+				onChangeText={onChange}
 			/>
+			<Text className="text-button-destructive text-[10px]">
+				{errorMessage}
+			</Text>
 		</View>
 	)
 }
