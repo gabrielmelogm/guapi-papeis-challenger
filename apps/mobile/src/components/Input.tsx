@@ -11,6 +11,7 @@ interface InputProps {
 	type?: KeyboardTypeOptions
 	onChange?: (e: any) => void
 	errorMessage?: string
+	value?: string
 }
 
 export function Input({
@@ -18,6 +19,7 @@ export function Input({
 	type = 'default',
 	onChange,
 	errorMessage,
+	value,
 }: InputProps) {
 	return (
 		<View className="mt-2">
@@ -30,6 +32,7 @@ export function Input({
 				className={`border border-border-light dark:border-transparent bg-input-light dark:bg-input-dark rounded-[5px] pl-2 text-border ${Platform.OS === 'ios' && 'h-8'} ${errorMessage && 'border-button-destructive'}`}
 				keyboardType={type}
 				onChangeText={onChange}
+				value={value}
 			/>
 			<Text className="text-button-destructive text-[10px]">
 				{errorMessage}

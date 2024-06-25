@@ -17,7 +17,7 @@ interface InputProps {
 	quantity: number
 }
 
-export function ActionsProducts() {
+export function CreateProducts() {
 	const [loading, setLoading] = useState<boolean>(false)
 	const [file, setFile] = useState<ImagePicker.ImagePickerAsset | null>(null)
 

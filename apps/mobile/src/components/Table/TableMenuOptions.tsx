@@ -2,7 +2,10 @@ import MenuIcon from '@/assets/icons/options.svg'
 import { useState } from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 
-export function TableMenuOptions(props: { onDeletePress: () => void }) {
+export function TableMenuOptions(props: {
+	onDeletePress: () => void
+	onEditPress: () => void
+}) {
 	const [isOpen, setIsOpen] = useState<boolean>(false)
 
 	return (
@@ -17,7 +20,12 @@ export function TableMenuOptions(props: { onDeletePress: () => void }) {
 				}
 				style={{ elevation: 5, display: isOpen ? 'flex' : 'none' }}
 			>
-				<TouchableOpacity onPress={() => setIsOpen(false)}>
+				<TouchableOpacity
+					onPress={() => {
+						props.onEditPress()
+						setIsOpen(false)
+					}}
+				>
 					<Text className="border-b border-[#E9ECEF] dark:border-border-dark py-1 px-2 text-icon-light dark:text-icon-dark">
 						Editar
 					</Text>

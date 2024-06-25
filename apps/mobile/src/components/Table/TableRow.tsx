@@ -1,21 +1,27 @@
 import { api } from '@/lib/api'
-import { Image, Text, View } from 'react-native'
+import { EditProducts } from '@/screens/EditProducts'
+import { useState } from 'react'
+import { Image, Modal, Text, View } from 'react-native'
 import { TableMenuOptions } from './TableMenuOptions'
 
+export interface ProductProps {
+	id: string
+	imageSrc: string
+	title: string
+	date: string
+	description: string
+	price: number
+	quantity: number
+}
+
 interface TableRowProps {
-	product: {
-		id: string
-		imageSrc: string
-		title: string
-		date: string
-		description: string
-		price: number
-		quantity: number
-	}
+	product: ProductProps
 	refreshData: () => Promise<void>
 }
 
 export function TableRow({ product, refreshData }: TableRowProps) {
+	const [editModal, setEditModal] = useState<boolean>(false)
+
 	async function handleDelete() {
 		try {
 			await api.delete('/', {
@@ -25,6 +31,10 @@ export function TableRow({ product, refreshData }: TableRowProps) {
 		} catch (error) {
 			alert('Erro ao deletar')
 		}
+	}
+
+	function handleEdit() {
+		setEditModal(true)
 	}
 
 	return (
@@ -71,7 +81,19 @@ export function TableRow({ product, refreshData }: TableRowProps) {
 				</View>
 			</View>
 
-			<TableMenuOptions onDeletePress={handleDelete} />
+			<TableMenuOptions onDeletePress={handleDelete} onEditPress={handleEdit} />
+
+			<Modal animationType="slide" visible={editModal}>
+				<View className="w-screen h-screen items-center justify-center bg-zinc-200">
+					<EditProducts
+						product={product}
+						closeModal={async () => {
+							setEditModal(false)
+							await refreshData()
+						}}
+					/>
+				</View>
+			</Modal>
 		</View>
 	)
 }

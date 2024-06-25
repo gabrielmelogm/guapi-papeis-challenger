@@ -9,7 +9,7 @@ export function Header() {
 
 	const icons = [
 		{
-			title: 'Action-Produtos',
+			title: 'Criar Produto',
 			icon: <ProductsButton stroke={'#FFFFFF'} width={24} height={24} />,
 		},
 		{
@@ -31,22 +31,15 @@ export function Header() {
 							{icons.find((icon) => icon.title === currentScreen.title)?.icon}
 						</View>
 						<Text className="text-base text-white">
-							{icons
-								.find((icon) => icon.title === currentScreen.title)
-								?.title.includes('Action-')
-								? icons
-										.find((icon) => icon.title === currentScreen.title)
-										?.title.replace('Action-', '')
-								: icons.find((icon) => icon.title === currentScreen.title)
-										?.title}
+							{icons.find((icon) => icon.title === currentScreen.title)?.title}
 						</Text>
 					</View>
 					<TouchableOpacity
-						onPress={() => changeScreen('Action-Produtos')}
+						onPress={() => changeScreen('Criar Produto')}
 						className={
-							currentScreen.title === 'Action-Produtos' ? 'opacity-0' : ''
+							currentScreen.title === 'Criar Produto' ? 'opacity-0' : ''
 						}
-						disabled={currentScreen.title === 'Action-Produtos'}
+						disabled={currentScreen.title === 'Criar Produto'}
 					>
 						<AddIcon />
 					</TouchableOpacity>

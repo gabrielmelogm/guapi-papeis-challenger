@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
-import { ActionsProducts } from './ActionsProducts'
 import { ChangeTheme } from './ChangeTheme'
+import { CreateProducts } from './CreateProducts'
 import { Products } from './Products'
 
 export interface ScreenProps {
@@ -14,8 +14,8 @@ export const screens: ScreenProps[] = [
 		component: <Products />,
 	},
 	{
-		title: 'Action-Produtos',
-		component: <ActionsProducts />,
+		title: 'Criar Produto',
+		component: <CreateProducts />,
 	},
 	{
 		title: 'Configurações',

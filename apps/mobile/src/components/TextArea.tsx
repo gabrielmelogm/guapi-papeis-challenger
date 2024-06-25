@@ -5,12 +5,13 @@ interface TextAreaProps {
 	label: string
 	onChange: (e: any) => void
 	errorMessage?: string
+	value?: string
 }
 
 const MAX_LENGTH = 100
 
 export function TextArea(props: TextAreaProps) {
-	const [text, setText] = useState('')
+	const [text, setText] = useState(props.value ?? '')
 
 	return (
 		<View className="relative mt-2">
@@ -28,9 +29,10 @@ export function TextArea(props: TextAreaProps) {
 					setText(newText)
 					props.onChange(newText)
 				}}
+				value={props.value}
 			/>
 
-			<Text className="absolute bottom-4 right-2 text-border">
+			<Text className="absolute bottom-4 right-2 text-border text-[#666666]">
 				{text.length < 10 ? `0${text.length}` : text.length}/{MAX_LENGTH}
 			</Text>
 			<Text className="text-button-destructive text-[10px]">
