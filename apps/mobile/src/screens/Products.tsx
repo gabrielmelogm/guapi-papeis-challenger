@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { ScrollView, View } from 'react-native'
 
 interface ProductProps {
-	id: number
+	id: string
 	name: string
 	description: string
 	value: number
@@ -47,6 +47,7 @@ export function Products() {
 					<TableRow
 						key={product.id}
 						product={{
+							id: product.id,
 							title: product.name,
 							imageSrc: product.imageUrl,
 							description: product.description,
@@ -54,6 +55,7 @@ export function Products() {
 							price: product.value,
 							quantity: product.quantity,
 						}}
+						refreshData={getData}
 					/>
 				))}
 			</ScrollView>

@@ -46,7 +46,7 @@ export function InputFile(props: InputFileProps) {
 						</View>
 					)}
 				</View>
-				<Text className="pl-2 text-xs text-icon-light">
+				<Text className="pl-2 text-xs text-icon-light dark:text-icon-dark">
 					ou solte um arquivo aqui
 				</Text>
 			</View>

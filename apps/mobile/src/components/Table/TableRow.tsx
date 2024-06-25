@@ -1,8 +1,10 @@
+import { api } from '@/lib/api'
 import { Image, Text, View } from 'react-native'
 import { TableMenuOptions } from './TableMenuOptions'
 
 interface TableRowProps {
 	product: {
+		id: string
 		imageSrc: string
 		title: string
 		date: string
@@ -10,9 +12,21 @@ interface TableRowProps {
 		price: number
 		quantity: number
 	}
+	refreshData: () => Promise<void>
 }
 
-export function TableRow({ product }: TableRowProps) {
+export function TableRow({ product, refreshData }: TableRowProps) {
+	async function handleDelete() {
+		try {
+			await api.delete('/', {
+				data: { productsId: [product.id] },
+			})
+			await refreshData()
+		} catch (error) {
+			alert('Erro ao deletar')
+		}
+	}
+
 	return (
 		<View
 			className="flex flex-row items-center gap-2 mt-2 py-3 px-2 bg-white dark:bg-badge-dark rounded-xl relative shadow-md"
@@ -57,7 +71,7 @@ export function TableRow({ product }: TableRowProps) {
 				</View>
 			</View>
 
-			<TableMenuOptions />
+			<TableMenuOptions onDeletePress={handleDelete} />
 		</View>
 	)
 }

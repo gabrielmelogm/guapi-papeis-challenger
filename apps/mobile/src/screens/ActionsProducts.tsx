@@ -18,6 +18,7 @@ interface InputProps {
 }
 
 export function ActionsProducts() {
+	const [loading, setLoading] = useState<boolean>(false)
 	const [file, setFile] = useState<ImagePicker.ImagePickerAsset | null>(null)
 
 	const { changeScreen } = useScreens()
@@ -48,23 +49,26 @@ export function ActionsProducts() {
 		form.append('file', inputFile)
 
 		try {
-			const response = await api.post('/', form, {
+			setLoading(true)
+			await api.post('/', form, {
 				headers: {
 					'Content-Type': 'multipart/form-data',
 				},
 			})
 
+			setLoading(false)
 			return changeScreen('Produtos')
 		} catch (error) {
 			console.error(JSON.stringify(error, null, 2))
+			setLoading(false)
 		}
 	}
 
 	return (
 		<View className={container}>
-			<View className="bg-white p-2 rounded-xl">
+			<View className="bg-white dark:bg-badge-dark p-2 rounded-xl">
 				<View>
-					<Text className="pt-2 pb-3 text-sm font-bold border-b border-[#E9ECEF]">
+					<Text className="pt-2 pb-3 text-sm font-bold border-b border-border-light dark:border-border-dark text-icon-light dark:text-icon-dark">
 						Cadastrar Produto
 					</Text>
 				</View>
@@ -144,7 +148,7 @@ export function ActionsProducts() {
 					<InputFile file={file} setFile={setFile} />
 				</View>
 
-				<View className="w-full flex flex-row justify-end border-t border-[#E9ECEF] pt-3 pb-1">
+				<View className="w-full flex flex-row justify-end border-t border-border-light dark:border-border-dark pt-3 pb-1">
 					<TouchableOpacity
 						className="w-[100px] py-2 flex items-center justify-center rounded-[4px] bg-button-secondary"
 						onPress={() => changeScreen('Produtos')}
@@ -152,8 +156,9 @@ export function ActionsProducts() {
 						<Text className="text-sm text-white">Voltar</Text>
 					</TouchableOpacity>
 					<TouchableOpacity
-						className="w-[100px] py-2 flex items-center justify-center rounded-[4px] bg-button-primary ml-2"
+						className={`w-[100px] py-2 flex items-center justify-center rounded-[4px] bg-button-primary ml-2 ${loading && 'opacity-40'}`}
 						onPress={handleSubmit(onSubmit)}
+						disabled={loading}
 					>
 						<Text className="text-sm text-white">Salvar</Text>
 					</TouchableOpacity>

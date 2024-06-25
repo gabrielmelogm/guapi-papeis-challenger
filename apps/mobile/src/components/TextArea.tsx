@@ -23,7 +23,7 @@ export function TextArea(props: TextAreaProps) {
 				multiline
 				numberOfLines={4}
 				maxLength={MAX_LENGTH}
-				className={`border border-border rounded-[5px] pl-2 text-border ${Platform.OS === 'ios' && 'h-[85px]'} ${props.errorMessage && 'border-button-destructive'}`}
+				className={`border border-border dark:border-transparent bg-input-light dark:bg-input-dark rounded-[5px] pl-2 text-border ${Platform.OS === 'ios' && 'h-[85px]'} ${props.errorMessage && 'border-button-destructive'}`}
 				onChangeText={(newText) => {
 					setText(newText)
 					props.onChange(newText)
