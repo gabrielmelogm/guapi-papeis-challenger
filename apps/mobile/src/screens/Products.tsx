@@ -1,3 +1,4 @@
+import { TableLoading } from '@/components/Table/TableLoading'
 import { TableRow } from '@/components/Table/TableRow'
 import { api } from '@/lib/api'
 import { container } from '@/styles/container'
@@ -16,8 +17,10 @@ interface ProductProps {
 
 export function Products() {
 	const [products, setProducts] = useState<ProductProps[]>([])
+	const [loading, setLoading] = useState<boolean>(false)
 
 	async function getData() {
+		setLoading(true)
 		try {
 			const response = await api.get('/')
 			const listData = []
@@ -30,7 +33,9 @@ export function Products() {
 				}
 			}
 			setProducts(listData)
+			setLoading(false)
 		} catch (error) {
+			setLoading(false)
 			console.error(error)
 		}
 	}
@@ -43,21 +48,35 @@ export function Products() {
 	return (
 		<View className={container}>
 			<ScrollView>
-				{products.map((product) => (
-					<TableRow
-						key={product.id}
-						product={{
-							id: product.id,
-							title: product.name,
-							imageSrc: product.imageUrl,
-							description: product.description,
-							date: product.createdAt,
-							price: product.value,
-							quantity: product.quantity,
-						}}
-						refreshData={getData}
-					/>
-				))}
+				{loading ? (
+					<>
+						<TableLoading />
+						<TableLoading />
+						<TableLoading />
+						<TableLoading />
+						<TableLoading />
+						<TableLoading />
+						<TableLoading />
+					</>
+				) : (
+					<>
+						{products.map((product) => (
+							<TableRow
+								key={product.id}
+								product={{
+									id: product.id,
+									title: product.name,
+									imageSrc: product.imageUrl,
+									description: product.description,
+									date: product.createdAt,
+									price: product.value,
+									quantity: product.quantity,
+								}}
+								refreshData={getData}
+							/>
+						))}
+					</>
+				)}
 			</ScrollView>
 		</View>
 	)

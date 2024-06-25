@@ -72,7 +72,8 @@ export function TableRow({ product, refreshData }: TableRowProps) {
 
 				<View className="pt-2 flex flex-row items-center justify-between">
 					<Text className="flex text-[10px] text-icon-light dark:text-icon-dark">
-						<Text className="font-medium">Valor:</Text> R$ {product.price}
+						<Text className="font-medium">Valor:</Text> R${' '}
+						{product.price.toFixed(2).replace('.', ',')}
 					</Text>
 					<Text className="flex text-[10px] text-icon-light dark:text-icon-dark">
 						<Text className="font-medium">Quantidade:</Text> {product.quantity}{' '}
@@ -84,7 +85,7 @@ export function TableRow({ product, refreshData }: TableRowProps) {
 			<TableMenuOptions onDeletePress={handleDelete} onEditPress={handleEdit} />
 
 			<Modal animationType="slide" visible={editModal}>
-				<View className="w-screen h-screen items-center justify-center bg-zinc-200">
+				<View className="w-screen h-screen items-center justify-center bg-zinc-200 dark:bg-zinc-800">
 					<EditProducts
 						product={product}
 						closeModal={async () => {
