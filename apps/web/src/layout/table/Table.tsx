@@ -127,7 +127,6 @@ export function Table() {
 						dataSource={dataSourceOptions}
 						allowColumnReordering={true}
 						rowAlternationEnabled={true}
-						showBorders={true}
 						width="100%"
 						onContentReady={onContentReady}
 						keyExpr={'id'}

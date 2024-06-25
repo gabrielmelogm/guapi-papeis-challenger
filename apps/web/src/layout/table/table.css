@@ -1,19 +1,42 @@
+:root {
+  --white: #FFFFFF;
+  --dark-row-primary: #39393e;
+  --dark-row-secondary: #323236;
+}
+
+
+/* Table */
 .dx-datagrid-headers .data-header {
   background-color: var(--primary);
-  color: #FFFFFF
+  color: var(--white)
 }
 
-.dark tbody {
-  background-color: #323236 !important;
-  color: #FFFFFF;
+.dark .dx-datagrid .dx-row-alt>td {
+  background-color: var(--dark-row-secondary) !important;
+  color: var(--white);
 }
 
-.dark .dx-datagrid-borders>.dx-datagrid-rowsview.dx-last-row-border tbody:last-child>.dx-data-row:nth-last-child(2), .dark .dx-datagrid-borders>.dx-datagrid-rowsview.dx-last-row-border tbody:last-child>.dx-data-row:nth-last-child(2)>td {
-  background-color: #39393E !important;
+.dark .dx-datagrid-rowsview .dx-row:nth-child(odd) {
+  background-color: var(--dark-row-primary) !important;
+  color: var(--white);
 }
 
+/* Checkbox */
+.dark .dx-checkbox-icon {
+  border: 2.4px solid #E9ECEF99 !important;
+}
+
+.dx-command-select .dx-cell-focus-disabled .dx-editor-cell .dx-editor-inline-block {
+  background-color: #FF0000 !important;
+}
+
+/* Input Search */
 .dark .dx-texteditor-input {
-  background-color: #323236 !important;
+  background-color: var(--dark-row-secondary) !important;
+}
+
+.dark .dx-texteditor-input::placeholder {
+  color: var(--white) !important;
 }
 
 .dx-group-panel-message {
