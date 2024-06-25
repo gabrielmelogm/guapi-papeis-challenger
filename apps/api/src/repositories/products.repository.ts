@@ -39,4 +39,13 @@ export class ProductsRepository {
 			},
 		})
 	}
+
+	async update(product: Partial<Product>, id: string) {
+		return await this.prisma.product.update({
+			data: product,
+			where: {
+				id,
+			},
+		})
+	}
 }

@@ -37,6 +37,23 @@ route.post('/', upload.single('file'), async (req, res) => {
 	)
 })
 
+route.put('/:id', upload.single('file'), async (req, res) => {
+	const { path: filePath } = req.file as any
+
+	return res.status(200).send(
+		await repository.update(
+			{
+				name: req.body.name,
+				description: req.body.description,
+				value: Number.parseFloat(req.body.value),
+				quantity: Number.parseFloat(req.body.quantity),
+				imageUrl: filePath,
+			},
+			req.params.id,
+		),
+	)
+})
+
 route.delete('/', async (req, res) =>
 	res.status(200).send(await repository.deleteMany(req.body?.productsId)),
 )
