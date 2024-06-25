@@ -17,6 +17,10 @@ const uploadsDir = path.join(__dirname, '../uploads')
 
 route.use('/uploads', express.static(uploadsDir))
 
+route.get('/:id', async (req, res) =>
+	res.status(200).send(await repository.findOne(req.params.id)),
+)
+
 route.get('/', async (_, res) =>
 	res.status(200).send(await repository.getProducts()),
 )

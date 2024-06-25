@@ -4,6 +4,22 @@ import { Product } from '../models/Product'
 export class ProductsRepository {
 	constructor(private readonly prisma: PrismaClient) {}
 
+	async findOne(id: string): Promise<Product> {
+		const response = await this.prisma.product.findFirst({
+			where: {
+				id,
+			},
+		})
+
+		if (!response) {
+			throw new Error('Product not found')
+		}
+
+		const product = new Product(response)
+
+		return product
+	}
+
 	async getProducts() {
 		return await this.prisma.product.findMany({
 			orderBy: {
