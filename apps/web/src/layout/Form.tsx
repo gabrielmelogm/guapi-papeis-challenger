@@ -86,7 +86,7 @@ export function Form() {
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="mt-6">
-			<div className="grid grid-cols-1x4 gap-4">
+			<div className="md:grid md:grid-cols-1x4 gap-4 max-md:flex max-md:flex-col-reverse">
 				<InputFile
 					label="Foto do Produto"
 					name="image"

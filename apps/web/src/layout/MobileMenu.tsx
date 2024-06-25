@@ -6,7 +6,7 @@ import { useState } from 'react'
 import { MenuContent } from './MenuContent'
 
 export function MobileMenu() {
-	const [visible, setVisible] = useState(true)
+	const [visible, setVisible] = useState(false)
 
 	return (
 		<div
